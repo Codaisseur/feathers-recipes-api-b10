@@ -24,8 +24,10 @@
   "scripts": {
     "test": "npm run eslint && npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
+    "eslint:fix": "eslint --fix src/. test/. --config .eslintrc.json",
     "start": "node src/",
-    "mocha": "mocha test/ --recursive"
+    "mocha": "mocha test/ --recursive",
+    "seed": "node src/seeds.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -50,8 +52,10 @@
   },
   "devDependencies": {
     "eslint": "^4.7.2",
+    "feathers-authentication-client": "^0.3.3",
     "mocha": "^3.5.3",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "superagent": "^3.6.0"
   }
 }
