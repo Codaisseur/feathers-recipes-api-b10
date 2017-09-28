@@ -1,8 +1,8 @@
 const { authenticate } = require('feathers-authentication').hooks;
 const commonHooks = require('feathers-hooks-common');
 const { restrictToOwner } = require('feathers-authentication-hooks');
-
 const { hashPassword } = require('feathers-authentication-local').hooks;
+
 const restrict = [
   authenticate('jwt'),
   restrictToOwner({
@@ -14,7 +14,7 @@ const restrict = [
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt') ],
+    find: [],
     get: [ ...restrict ],
     create: [ hashPassword() ],
     update: [ ...restrict, hashPassword() ],
@@ -25,8 +25,12 @@ module.exports = {
   after: {
     all: [
       commonHooks.when(
-        hook => hook.params.provider,
+        (hook) => (hook.params.provider), // hook.params.provider is empty for internal calls
         commonHooks.discard('password')
+      ),
+      commonHooks.unless(
+        (hook) => (hook.params.user && hook.params.user._id === hook.data._id), // don't show emails to other users
+        commonHooks.discard('email')
       )
     ],
     find: [],
