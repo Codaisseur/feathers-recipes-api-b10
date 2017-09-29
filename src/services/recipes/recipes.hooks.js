@@ -25,6 +25,8 @@ const authorSchema = {
   }
 };
 
+const makeLikeable = require('../../hooks/make-likeable');
+
 module.exports = {
   before: {
     all: [],
@@ -34,12 +36,8 @@ module.exports = {
       ...restrict,
       associateCurrentUser({ as: 'authorId' }),
     ],
-    update: [
-      ...restrictToOwners,
-    ],
-    patch: [
-      ...restrictToOwners,
-    ],
+    update: [...restrict, makeLikeable],
+    patch: [...restrict, makeLikeable],
     remove: [
       ...restrictToOwners,
     ]
