@@ -29,7 +29,7 @@ module.exports = {
         commonHooks.discard('password')
       ),
       commonHooks.unless(
-        (hook) => (hook.params.user && hook.params.user._id === hook.data._id), // don't show emails to other users
+        (hook) => (hook.data && hook.params.user && hook.params.user._id === hook.data._id), // don't show emails to other users
         commonHooks.discard('email')
       )
     ],
