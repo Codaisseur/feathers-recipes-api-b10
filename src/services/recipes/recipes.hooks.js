@@ -1,6 +1,7 @@
 const { authenticate } = require('feathers-authentication').hooks;
 const { restrictToOwner, associateCurrentUser, restrictToAuthenticated } = require('feathers-authentication-hooks');
 const { populate } = require('feathers-hooks-common');
+const makeLikeable = require('../../hooks/make-likeable');
 
 const restrict = [
   authenticate('jwt'),
@@ -25,7 +26,6 @@ const authorSchema = {
   }
 };
 
-const makeLikeable = require('../../hooks/make-likeable');
 
 module.exports = {
   before: {

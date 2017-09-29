@@ -26,6 +26,7 @@
     "eslint": "eslint src/. test/. --config .eslintrc.json",
     "eslint:fix": "eslint --fix src/. test/. --config .eslintrc.json",
     "start": "node src/",
+    "dev": "nodemon --inspect src/",
     "mocha": "mocha test/ --recursive",
     "seed": "node src/seeds.js"
   },
@@ -54,6 +55,7 @@
     "eslint": "^4.7.2",
     "feathers-authentication-client": "^0.3.3",
     "mocha": "^3.5.3",
+    "nodemon": "^1.12.1",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "superagent": "^3.6.0"
